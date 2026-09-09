@@ -47,6 +47,7 @@ set(${PROJECT_NAME}_SOURCES
     ClientConnectionRRE.cpp
     ClientConnectionRSAAES.cpp
     ClientConnectionRaw.cpp
+    ClientConnectionARD.cpp
     ClientConnectionTLS.cpp
     ClientConnectionTight.cpp
     ClientConnectionUltra.cpp
