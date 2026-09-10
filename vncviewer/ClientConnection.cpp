@@ -2946,6 +2946,7 @@ void ClientConnection::Authenticate(std::vector<CARD32>& current_auth)
 				case rfbRSAAESne:
 				case rfbVncAuth:
 				case rfbNoAuth:
+				case rfbAppleARD:
 					auth_supported.push_back(authAllowed[i]);
 					break;
 				}
@@ -2966,6 +2967,7 @@ void ClientConnection::Authenticate(std::vector<CARD32>& current_auth)
 				auth_priority.push_back(rfbRSAAES);
 				auth_priority.push_back(rfbRSAAESne_256);
 				auth_priority.push_back(rfbRSAAESne);
+				auth_priority.push_back(rfbAppleARD); // Prefer ARD (DH+AES) over plain VNC auth
 				auth_priority.push_back(rfbVncAuth);
 				auth_priority.push_back(rfbNoAuth);
 
@@ -3129,6 +3131,9 @@ void ClientConnection::Authenticate(std::vector<CARD32>& current_auth)
 		break;
 	case rfbRSAAESne_256:
 		AuthRSAAES(256, false);
+		break;
+	case rfbAppleARD:
+		AuthAppleARD();
 		break;
 	case rfbVeNCypt:
 		AuthVeNCrypt();
