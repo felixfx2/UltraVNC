@@ -2967,8 +2967,8 @@ void ClientConnection::Authenticate(std::vector<CARD32>& current_auth)
 				auth_priority.push_back(rfbRSAAES);
 				auth_priority.push_back(rfbRSAAESne_256);
 				auth_priority.push_back(rfbRSAAESne);
+				auth_priority.push_back(rfbAppleARD); // Prefer ARD (DH+AES) over plain VNC auth
 				auth_priority.push_back(rfbVncAuth);
-				auth_priority.push_back(rfbAppleARD); // low priority while the ARD path is stubbed
 				auth_priority.push_back(rfbNoAuth);
 
 				for (std::vector<CARD8>::iterator best_auth_it = auth_priority.begin(); best_auth_it != auth_priority.end(); best_auth_it++) {
